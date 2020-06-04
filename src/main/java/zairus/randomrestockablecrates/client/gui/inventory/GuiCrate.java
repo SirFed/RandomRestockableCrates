@@ -28,7 +28,7 @@ public class GuiCrate extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
-		this.fontRendererObj.drawString(((TileEntityCrate)inventory).getDefaultName(), 8, 6, 4210752);
+		this.fontRenderer.drawString(((TileEntityCrate)inventory).getDefaultName(), 8, 6, 4210752);
 	}
 	
 	@Override

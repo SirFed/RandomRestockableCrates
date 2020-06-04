@@ -2,15 +2,19 @@ package zairus.randomrestockablecrates;
 
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import zairus.randomrestockablecrates.block.RRCBlocks;
 import zairus.randomrestockablecrates.event.RRCEventHandler;
@@ -46,12 +50,13 @@ public class RandomRestockableCrates
 		
 		RRCConfig.init(event.getSuggestedConfigurationFile());
 		
-		RRCBlocks.init();
+		//RRCBlocks.init();
 		
 		RandomRestockableCrates.proxy.preInit(event);
+		proxy.initTESR();
 	}
 	
-	@EventHandler
+	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
 		RRCEventHandler eventHandler = new RRCEventHandler();
@@ -59,7 +64,7 @@ public class RandomRestockableCrates
 		RandomRestockableCrates.proxy.init(event);
 		packetPipeline.initalise();
 		
-		RRCBlocks.initModels();
+		//RRCBlocks.initModels();
 		
 		MinecraftForge.EVENT_BUS.register(eventHandler);
 		MinecraftForge.TERRAIN_GEN_BUS.register(eventHandler);
@@ -67,7 +72,7 @@ public class RandomRestockableCrates
 		NetworkRegistry.INSTANCE.registerGuiHandler(RandomRestockableCrates.instance, new GuiHandler());
 	}
 	
-	@EventHandler
+	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		RandomRestockableCrates.proxy.postInit(event);
@@ -77,5 +82,23 @@ public class RandomRestockableCrates
 	public static void log(String message)
 	{
 		logger.info(message);
+	}
+	
+	@Mod.EventBusSubscriber 
+	public static class RegistrationHandler{
+		@SubscribeEvent
+		public static void registerItems(RegistryEvent.Register<Item> event) {
+			RRCBlocks.registeritemBlocks(event.getRegistry());
+		}
+		
+		@SubscribeEvent
+		public static void registerModels(ModelRegistryEvent event) {
+			RRCBlocks.registerModels();
+		}
+		
+		@SubscribeEvent
+		public static void registerBlocks(RegistryEvent.Register<Block> event) {
+			RRCBlocks.register(event.getRegistry());
+		}
 	}
 }

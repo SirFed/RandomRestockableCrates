@@ -17,12 +17,10 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import zairus.randomrestockablecrates.RRCConfig;
 import zairus.randomrestockablecrates.inventory.ContainerCrate;
-import zairus.randomrestockablecrates.sound.RRCSoundEvents;
 
 public class TileEntityCrate extends TileEntityLockable implements ITickable, IInventory
 {
@@ -178,7 +176,8 @@ public class TileEntityCrate extends TileEntityLockable implements ITickable, II
 		if (!this.open)
 			this.lastOpened = this.worldTicks;
 		
-		this.world.playSound((EntityPlayer)null, pos, RRCSoundEvents.CRATE_OPEN, SoundCategory.BLOCKS, 1.0F, 1.2F / (this.world.rand.nextFloat() * 0.2f + 0.9f));
+		//So sounds are disabled because they cause the game to crash
+		//this.world.playSound((EntityPlayer)null, pos, RRCSoundEvents.CRATE_OPEN, SoundCategory.BLOCKS, 1.0F, 1.2F / (this.world.rand.nextFloat() * 0.2f + 0.9f));
 		this.open = true;
 		
 		updateMe();
@@ -227,7 +226,7 @@ public class TileEntityCrate extends TileEntityLockable implements ITickable, II
 				this.firstTime = false;
 				this.lastOpened = worldTicks;
 				
-				this.world.playSound((EntityPlayer)null, pos, RRCSoundEvents.CRATE_OPEN, SoundCategory.BLOCKS, 1.0F, 1.2F / (this.world.rand.nextFloat() * 0.2f + 0.9f));
+				//this.world.playSound((EntityPlayer)null, pos, RRCSoundEvents.CRATE_OPEN, SoundCategory.BLOCKS, 1.0F, 1.2F / (this.world.rand.nextFloat() * 0.2f + 0.9f));
 				
 				restock(this.world.rand);
 			}

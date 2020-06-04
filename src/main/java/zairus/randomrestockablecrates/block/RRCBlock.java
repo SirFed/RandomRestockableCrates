@@ -23,4 +23,5 @@ public class RRCBlock extends Block
 	{
 		return this.modName;
 	}
+	
 }

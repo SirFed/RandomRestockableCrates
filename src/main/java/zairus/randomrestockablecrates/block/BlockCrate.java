@@ -13,6 +13,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -38,7 +40,7 @@ public class BlockCrate extends BlockContainer implements ITileEntityProvider
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 	public static final PropertyBool OPEN = PropertyBool.create("open");
 	
-	public BlockCrate(Material material, int tier)
+	public BlockCrate(Material material, int tier, String name)
 	{
 		super(material);
 		this.crateTier = tier;
@@ -48,7 +50,18 @@ public class BlockCrate extends BlockContainer implements ITileEntityProvider
 		this.setHarvestLevel("axe", 0);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPEN, false));
 		
+		setUnlocalizedName(name);
+		setRegistryName(name);
+		
 		this.setBlockUnbreakable();
+	}
+	
+	public Item createItemBlock() {
+		return new ItemBlock(this).setRegistryName(getRegistryName());
+	}
+	
+	public void registerItemModel(Item itemBlock) {
+		RandomRestockableCrates.proxy.registerItemRenderer(itemBlock, 0, modName);
 	}
 	
 	@Override
@@ -74,6 +87,7 @@ public class BlockCrate extends BlockContainer implements ITileEntityProvider
 		return false;
 	}
 	
+
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
