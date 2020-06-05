@@ -20,12 +20,13 @@ public class TileEntityCrateRenderer extends TileEntitySpecialRenderer<TileEntit
 	private ModelCrate crate = new ModelCrate();
 	
 	
-	public void renderTileEntityAt(TileEntityCrate te, double x, double y, double z, float partialTicks, int destroyStage)
+	public void render(TileEntityCrate te, double x, double y, double z, float partialTicks, int destroyStage)
 	{
 		GlStateManager.enableDepth();
 		GlStateManager.depthFunc(515);
 		GlStateManager.depthMask(true);
 		int i;
+
 		
 		if (!te.hasWorld())
 		{

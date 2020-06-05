@@ -36,7 +36,7 @@ public class ClientProxy extends CommonProxy
 	
 	@Override
 	public void registerItemRenderer(Item item, int meta, String id) {
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(RRCConstants.MODID + ":" + id, "inventory")); //case 1
+		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(RRCConstants.MODID + ":" + id, "inventory"));
 	}
 	
 	@Override

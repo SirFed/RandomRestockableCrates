@@ -9,19 +9,10 @@ import zairus.randomrestockablecrates.tileentity.TileEntityCrate;
 
 public class RRCBlocks
 {
-	public static final BlockCrate CRATE;
-	public static final BlockCrate CRATE2;
-	public static final BlockCrate CRATE3;
-	public static final BlockCrate CRATE4;
-	
-	static
-	{
-		CRATE = new BlockCrate(Material.WOOD, 0, "blockcrate1");
-		CRATE2 = new BlockCrate(Material.WOOD, 1, "blockcrate2");
-		CRATE3 = new BlockCrate(Material.ANVIL, 2, "blockcrate3");
-		CRATE4 = new BlockCrate(Material.ANVIL, 3, "blockcrate4");
-	}
-	
+	public static BlockCrate CRATE = new BlockCrate(Material.WOOD, 0, "blockcrate1");
+	public static  BlockCrate CRATE2 = new BlockCrate(Material.WOOD, 1, "blockcrate2");
+	public static  BlockCrate CRATE3 = new BlockCrate(Material.ANVIL, 2, "blockcrate3");
+	public static  BlockCrate CRATE4 = new BlockCrate(Material.ANVIL, 3, "blockcrate4");
 	
 	@SuppressWarnings("deprecation")
 	public static void register(IForgeRegistry<Block> registry) {
@@ -36,10 +27,10 @@ public class RRCBlocks
 	
 	public static void registeritemBlocks(IForgeRegistry<Item> registry) {
 		registry.registerAll(
-				CRATE.createItemBlock(),
-				CRATE2.createItemBlock(),
-				CRATE3.createItemBlock(),
-				CRATE4.createItemBlock()
+				CRATE.createItemBlock("blockcrate1"),
+				CRATE2.createItemBlock("blockcrate2"),
+				CRATE3.createItemBlock("blockcrate3"),
+				CRATE4.createItemBlock("blockcrate4")
 		);
 	}
 	

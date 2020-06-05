@@ -21,12 +21,14 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
+import zairus.randomrestockablecrates.RRCConstants;
 import zairus.randomrestockablecrates.RandomRestockableCrates;
 import zairus.randomrestockablecrates.gui.GuiHandler;
 import zairus.randomrestockablecrates.tileentity.TileEntityCrate;
@@ -50,14 +52,18 @@ public class BlockCrate extends BlockContainer implements ITileEntityProvider
 		this.setHarvestLevel("axe", 0);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPEN, false));
 		
+		this.modName = name;
+		
 		setUnlocalizedName(name);
 		setRegistryName(name);
+		
+		
 		
 		this.setBlockUnbreakable();
 	}
 	
-	public Item createItemBlock() {
-		return new ItemBlock(this).setRegistryName(getRegistryName());
+	public Item createItemBlock(String name) {
+		return new ItemBlock(this).setRegistryName(new ResourceLocation(RRCConstants.MODID, name));
 	}
 	
 	public void registerItemModel(Item itemBlock) {
@@ -87,7 +93,7 @@ public class BlockCrate extends BlockContainer implements ITileEntityProvider
 		return false;
 	}
 	
-
+	
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
@@ -226,7 +232,7 @@ public class BlockCrate extends BlockContainer implements ITileEntityProvider
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
-		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+		return EnumBlockRenderType.MODEL;
 	}
 	
 	//Block

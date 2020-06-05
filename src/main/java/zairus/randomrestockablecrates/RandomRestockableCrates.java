@@ -47,13 +47,11 @@ public class RandomRestockableCrates
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		logger = event.getModLog();
-		
+		//proxy.initTESR();
 		RRCConfig.init(event.getSuggestedConfigurationFile());
 		
-		//RRCBlocks.init();
-		
 		RandomRestockableCrates.proxy.preInit(event);
-		proxy.initTESR();
+		
 	}
 	
 	@Mod.EventHandler
@@ -86,6 +84,12 @@ public class RandomRestockableCrates
 	
 	@Mod.EventBusSubscriber 
 	public static class RegistrationHandler{
+		
+		@SubscribeEvent
+		public static void registerBlocks(RegistryEvent.Register<Block> event) {
+			RRCBlocks.register(event.getRegistry());
+		}
+		
 		@SubscribeEvent
 		public static void registerItems(RegistryEvent.Register<Item> event) {
 			RRCBlocks.registeritemBlocks(event.getRegistry());
@@ -96,9 +100,5 @@ public class RandomRestockableCrates
 			RRCBlocks.registerModels();
 		}
 		
-		@SubscribeEvent
-		public static void registerBlocks(RegistryEvent.Register<Block> event) {
-			RRCBlocks.register(event.getRegistry());
-		}
 	}
 }

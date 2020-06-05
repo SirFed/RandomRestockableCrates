@@ -18,19 +18,19 @@
 			"y": 180
 		},
 		"facing=east,open=true": {
-			"model": "randomrestockablecrates:blockcrate1open",
+			"model": "randomrestockablecrates:blockcrate1",
 			"y": 270
 		},
 		"facing=south,open=true": {
-			"model": "randomrestockablecrates:blockcrate1open",
+			"model": "randomrestockablecrates:blockcrate1",
 			"y": 0
 		},
 		"facing=west,open=true": {
-			"model": "randomrestockablecrates:blockcrate1open",
+			"model": "randomrestockablecrates:blockcrate1",
 			"y": 90
 		},
 		"facing=north,open=true": {
-			"model": "randomrestockablecrates:blockcrate1open",
+			"model": "randomrestockablecrates:blockcrate1",
 			"y": 180
 		}
     }
