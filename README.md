@@ -16,6 +16,7 @@ Current Release 1.4.0
 This is the first release of Random Restockable Crates compatible with 1.12.2
 
 Known Issues:
+
 -No sounds play when opening or closing a crate, this feature was removed since it was causing crashes on the server side.
 
 -There is no animation for opening or closing the crates, this was causing the block to render as completely transparent.
