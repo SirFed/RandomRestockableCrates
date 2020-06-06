@@ -8,7 +8,9 @@ This was my first time ever working on a mod for Minecraft, so I aplogize for an
 The mod is now available on CurseForge! Check it out at: https://www.curseforge.com/minecraft/mc-mods/random-restockable-crates-unofficial-update
 
 
------Chnagelog-----
+
+-----Changelog-----
+
 Current Release 1.4.0
 
 This is the first release of Random Restockable Crates compatible with 1.12.2
